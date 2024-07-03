@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/insurance")
 public class InsuranceController {
@@ -20,7 +22,7 @@ public class InsuranceController {
 
 
     @PostMapping("/addNewInsurance")
-    public InsuranceDTO addNewInsurance(@RequestBody InsuranceDTO insurance) {
+    public List<InsuranceDTO> addNewInsurance(@RequestBody InsuranceDTO insurance) {
         return insuranceService.addNewInsurance(insurance);
     }
 

@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.summerproject24.Enums.Insurance.CoverageAmount;
 import org.example.summerproject24.Enums.Insurance.Insurance;
-import org.example.summerproject24.Models.Payment.PaymentInfoEntity;
+import org.example.summerproject24.Models.Payment.CreditCardPaymentEntity;
+import org.example.summerproject24.Models.Payment.InvoicePaymentEntity;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.time.LocalDate;
@@ -23,5 +24,6 @@ public class InsuranceEntity {
     private LocalDate startDate;
     private LocalDate endDate;
     private CoverageAmount coverageAmount;
-    private PaymentInfoEntity paymentInfoEntity;
+    private InvoicePaymentEntity invoicePayment;
+    private CreditCardPaymentEntity creditCardPayment;
 }

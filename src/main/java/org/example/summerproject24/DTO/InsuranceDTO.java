@@ -3,7 +3,8 @@ package org.example.summerproject24.DTO;
 import lombok.Value;
 import org.example.summerproject24.Enums.Insurance.CoverageAmount;
 import org.example.summerproject24.Enums.Insurance.Insurance;
-import org.example.summerproject24.Models.Payment.PaymentInfoEntity;
+import org.example.summerproject24.Models.Payment.CreditCardPaymentEntity;
+import org.example.summerproject24.Models.Payment.InvoicePaymentEntity;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -13,10 +14,11 @@ public class InsuranceDTO {
 
     UUID insuranceId;
     UUID userId;
-    Insurance InsuranceType;
+    Insurance insuranceType;
     String info;
     LocalDate startDate;
     LocalDate endDate;
     CoverageAmount coverageAmount;
-    PaymentInfoEntity paymentInfoEntity;
+    InvoicePaymentEntity invoicePayment;
+    CreditCardPaymentEntity creditCardPayment;
 }

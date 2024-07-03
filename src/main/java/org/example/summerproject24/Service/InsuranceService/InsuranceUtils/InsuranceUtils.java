@@ -2,8 +2,10 @@ package org.example.summerproject24.Service.InsuranceService.InsuranceUtils;
 
 import org.example.summerproject24.DTO.InsuranceDTO;
 import org.example.summerproject24.Models.Insurance.InsuranceEntity;
+import org.example.summerproject24.Models.User.UserEntity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 public class InsuranceUtils {
@@ -17,7 +19,8 @@ public class InsuranceUtils {
                 insurance.getStartDate(),
                 insurance.getEndDate(),
                 insurance.getCoverageAmount(),
-                insurance.getPaymentInfoEntity()
+                insurance.getInvoicePayment(),
+                insurance.getCreditCardPayment()
         );
     }
 
@@ -30,7 +33,8 @@ public class InsuranceUtils {
                 insurance.getStartDate(),
                 insurance.getEndDate(),
                 insurance.getCoverageAmount(),
-                insurance.getPaymentInfoEntity()
+                insurance.getInvoicePayment(),
+                insurance.getCreditCardPayment()
         );
     }
 
@@ -42,7 +46,16 @@ public class InsuranceUtils {
         insurance.getStartDate(),
         insurance.getEndDate(),
         insurance.getCoverageAmount(),
-        insurance.getPaymentInfoEntity()
+        insurance.getInvoicePayment(),
+                insurance.getCreditCardPayment()
         );
+    }
+
+    public static UserEntity addInsuranceToUser(InsuranceDTO insurance, UserEntity user) {
+        InsuranceEntity newInsurance = InsuranceUtils.initializeInsurance(insurance);
+        List<InsuranceEntity> insurances = user.getInsurances();
+        insurances.add(newInsurance);
+        user.setInsurances(insurances);
+        return user;
     }
 }

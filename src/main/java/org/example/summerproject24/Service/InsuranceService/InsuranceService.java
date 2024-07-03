@@ -8,6 +8,7 @@ import org.example.summerproject24.Service.InsuranceService.InsuranceUtils.Insur
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,7 @@ public class InsuranceService {
     }
 
 
-    public InsuranceDTO addNewInsurance(InsuranceDTO insurance) {
+    public List<InsuranceDTO> addNewInsurance(InsuranceDTO insurance) {
 
         Optional<UserEntity> user = userRepository.findById(insurance.getUserId());
 
@@ -30,11 +31,13 @@ public class InsuranceService {
             throw new RuntimeException("No user with id: " + insurance.getUserId());
         }
 
-        InsuranceEntity newInsurance = InsuranceUtils.initializeInsurance(insurance);
-        List<InsuranceEntity> insurances = user.get().getInsurances();
+        UserEntity updatedUser = InsuranceUtils.addInsuranceToUser(insurance, user.get());
+        updatedUser.setUpdatedAt(LocalDate.now());
+        userRepository.save(updatedUser);
 
-        insurances.add(newInsurance);
-
-        return InsuranceUtils.toInsuranceDTO(newInsurance);
+        return updatedUser.getInsurances()
+                .stream()
+                .map(InsuranceUtils::toInsuranceDTO)
+                .toList();
     }
 }
