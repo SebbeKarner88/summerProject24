@@ -6,13 +6,11 @@ import lombok.Setter;
 import org.example.summerproject24.Enums.Insurance.CoverageAmount;
 import org.example.summerproject24.Enums.Insurance.Insurance;
 import org.example.summerproject24.Models.Payment.PaymentInfoEntity;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Document("insurance")
 @AllArgsConstructor
 @Getter
 @Setter

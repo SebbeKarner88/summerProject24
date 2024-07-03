@@ -3,8 +3,7 @@ package org.example.summerproject24.Service.InsuranceService;
 import org.example.summerproject24.DTO.InsuranceDTO;
 import org.example.summerproject24.Models.Insurance.InsuranceEntity;
 import org.example.summerproject24.Models.User.UserEntity;
-import org.example.summerproject24.Repository.InsuranceRepository.InsuranceRepository;
-import org.example.summerproject24.Repository.UserRepopsitory.UserRepository;
+import org.example.summerproject24.Repository.UserRepository;
 import org.example.summerproject24.Service.InsuranceService.InsuranceUtils.InsuranceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +14,10 @@ import java.util.Optional;
 @Service
 public class InsuranceService {
 
-    private final InsuranceRepository insuranceRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public InsuranceService(InsuranceRepository insuranceRepository, UserRepository userRepository) {
-        this.insuranceRepository = insuranceRepository;
+    public InsuranceService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -37,7 +34,6 @@ public class InsuranceService {
         List<InsuranceEntity> insurances = user.get().getInsurances();
 
         insurances.add(newInsurance);
-        insuranceRepository.save(newInsurance);
 
         return InsuranceUtils.toInsuranceDTO(newInsurance);
     }
