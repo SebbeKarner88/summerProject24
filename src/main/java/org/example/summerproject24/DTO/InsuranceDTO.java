@@ -12,6 +12,7 @@ import java.util.UUID;
 public class InsuranceDTO {
 
     UUID insuranceId;
+    UUID userId;
     Insurance InsuranceType;
     String info;
     LocalDate startDate;

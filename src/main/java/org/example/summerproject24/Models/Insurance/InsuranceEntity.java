@@ -19,6 +19,7 @@ import java.util.UUID;
 public class InsuranceEntity {
     @MongoId
     private UUID insuranceId;
+    private UUID userId;
     private Insurance InsuranceType;
     private String info;
     private LocalDate startDate;
