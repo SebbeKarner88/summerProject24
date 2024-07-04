@@ -52,7 +52,7 @@ public class InsuranceUtils {
     }
 
     public static UserEntity addInsuranceToUser(InsuranceDTO insurance, UserEntity user) {
-        InsuranceEntity newInsurance = InsuranceUtils.initializeInsurance(insurance);
+        InsuranceEntity newInsurance = initializeInsurance(insurance);
         List<InsuranceEntity> insurances = user.getInsurances();
         insurances.add(newInsurance);
         user.setInsurances(insurances);

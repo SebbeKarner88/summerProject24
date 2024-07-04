@@ -6,11 +6,13 @@ import org.example.summerproject24.Models.User.UserEntity;
 import org.example.summerproject24.Repository.UserRepository;
 import org.example.summerproject24.Service.InsuranceService.InsuranceUtils.InsuranceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class InsuranceService {
@@ -22,6 +24,19 @@ public class InsuranceService {
         this.userRepository = userRepository;
     }
 
+
+    public List<InsuranceDTO> getInsurances(UUID userId) {
+        Optional<UserEntity> user = userRepository.findById(userId);
+
+        if (user.isEmpty()) {
+            throw new RuntimeException("No user with id: " + userId);
+        }
+
+        return user.get().getInsurances()
+                .stream()
+                .map(InsuranceUtils::toInsuranceDTO)
+                .toList();
+    }
 
     public List<InsuranceDTO> addNewInsurance(InsuranceDTO insurance) {
 
@@ -40,4 +55,30 @@ public class InsuranceService {
                 .map(InsuranceUtils::toInsuranceDTO)
                 .toList();
     }
+
+    public List<InsuranceDTO> deleteInsurance(UUID userId, UUID insuranceId) {
+
+        Optional<UserEntity> opUser = userRepository.findById(userId);
+
+        if (opUser.isEmpty()) {
+            throw new RuntimeException("No user with id: " + userId);
+        }
+
+        UserEntity user = opUser.get();
+
+        List<InsuranceEntity> updatedList =
+                user.getInsurances()
+                .stream()
+                .filter(insuranceEntity -> !insuranceEntity.getInsuranceId().equals(insuranceId))
+                .toList();
+
+        user.setInsurances(updatedList);
+        userRepository.save(user);
+
+        return updatedList
+                .stream()
+                .map(InsuranceUtils::toInsuranceDTO)
+                .toList();
+    }
+
 }
