@@ -1,6 +1,5 @@
 package org.example.summerproject24.Controller.ClaimsController;
 
-import org.apache.catalina.User;
 import org.example.summerproject24.Models.Insurance.ClaimEntity;
 import org.example.summerproject24.Models.User.UserEntity;
 import org.example.summerproject24.Service.ClaimsService.ClaimsService;
@@ -19,13 +18,12 @@ public class ClaimsController {
         this.claimsService = claimsService;
     }
 
-    @GetMapping("/getAllClaimsByInsuranceId/{userId}/{insuranceId}")
-    public List<ClaimEntity> GetAllClaimsByInsuranceId(@PathVariable("userId") UUID userId,
-                                                       @PathVariable("insuranceId") UUID insuranceId) {
-        return claimsService.getAllClaimsByInsuranceId(userId, insuranceId);
+    @GetMapping("/getAllClaimsByUserId/{userId}")
+    public List<ClaimEntity> GetAllClaimsByInsuranceId(@PathVariable("userId") UUID userId) {
+        return claimsService.getAllClaimsByUserId(userId);
     }
 
-    @PostMapping("/addNewCLaim/{userId}")
+    @PostMapping("/addNewClaim/{userId}")
     public UserEntity AddNewClaim(@PathVariable("userId") UUID userId,
                                   @RequestBody ClaimEntity claim) {
         return claimsService.addNewClaim(userId, claim);

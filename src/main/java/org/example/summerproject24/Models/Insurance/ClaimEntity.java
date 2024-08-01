@@ -1,6 +1,7 @@
 package org.example.summerproject24.Models.Insurance;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.summerproject24.Enums.Insurance.ClaimStatus;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class ClaimEntity {
     @MongoId
     private UUID claimId;
