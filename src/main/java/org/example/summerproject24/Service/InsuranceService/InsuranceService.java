@@ -6,7 +6,6 @@ import org.example.summerproject24.Models.User.UserEntity;
 import org.example.summerproject24.Repository.UserRepository;
 import org.example.summerproject24.Service.InsuranceService.InsuranceUtils.InsuranceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -38,6 +37,7 @@ public class InsuranceService {
                 .toList();
     }
 
+
     public List<InsuranceDTO> addNewInsurance(InsuranceDTO insurance) {
 
         Optional<UserEntity> user = userRepository.findById(insurance.getUserId());
@@ -55,6 +55,7 @@ public class InsuranceService {
                 .map(InsuranceUtils::toInsuranceDTO)
                 .toList();
     }
+
 
     public List<InsuranceDTO> deleteInsurance(UUID userId, UUID insuranceId) {
 
@@ -82,3 +83,4 @@ public class InsuranceService {
     }
 
 }
+

@@ -4,7 +4,6 @@ import org.example.summerproject24.DTO.InsuranceDTO;
 import org.example.summerproject24.Models.Insurance.InsuranceEntity;
 import org.example.summerproject24.Models.User.UserEntity;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
